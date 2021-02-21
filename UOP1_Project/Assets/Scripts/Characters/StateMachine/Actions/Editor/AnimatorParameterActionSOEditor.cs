@@ -3,12 +3,10 @@ using UnityEngine;
 using UOP1.StateMachine;
 
 [CustomEditor(typeof(AnimatorParameterActionSO)), CanEditMultipleObjects]
-public class AnimatorParameterActionSOEditor : CustomBaseEditor
+public class AnimatorParameterActionSOEditor : UnityEditor.Editor
 {
 	public override void OnInspectorGUI()
 	{
-		DrawNonEdtiableScriptReference<AnimatorParameterActionSO>();
-
 		serializedObject.Update();
 
 		EditorGUILayout.PropertyField(serializedObject.FindProperty("whenToRun"));

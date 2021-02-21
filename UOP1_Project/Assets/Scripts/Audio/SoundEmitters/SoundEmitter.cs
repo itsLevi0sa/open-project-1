@@ -60,16 +60,6 @@ public class SoundEmitter : MonoBehaviour
 		_audioSource.Stop();
 	}
 
-	public void Finish()
-	{
-		if (_audioSource.loop)
-		{
-			_audioSource.loop = false;
-			float timeRemaining = _audioSource.clip.length - _audioSource.time;
-			StartCoroutine(FinishedPlaying(timeRemaining));
-		}
-	}
-
 	public bool IsInUse()
 	{
 		return _audioSource.isPlaying;
@@ -78,11 +68,6 @@ public class SoundEmitter : MonoBehaviour
 	public bool IsLooping()
 	{
 		return _audioSource.loop;
-	}
-
-	public bool IsFinishing()
-	{
-		return !_audioSource.loop;
 	}
 
 	IEnumerator FinishedPlaying(float clipLength)

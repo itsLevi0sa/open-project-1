@@ -18,7 +18,7 @@ public partial class SceneSelector : EditorWindow, IHasCustomMenu
 	private List<Item> items => _storage.items;
 	private Dictionary<string, Item> itemsMap => _storage.itemsMap;
 
-	[MenuItem("ChopChop/Scene Selector")]
+	[MenuItem("Window/Scene Selector", false, 100)]
 	private static void Open()
 	{
 		GetWindow<SceneSelector>();
