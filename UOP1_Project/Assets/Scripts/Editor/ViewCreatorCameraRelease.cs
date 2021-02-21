@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(ViewCreatorCamera))]
-public class ViewCreatorCameraRelease: Editor
+public class ViewCreatorCameraRelease : Editor
 {
 	private ViewCreatorCamera viewCamera => target as ViewCreatorCamera;
 
