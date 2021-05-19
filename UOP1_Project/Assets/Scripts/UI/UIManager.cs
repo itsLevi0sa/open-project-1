@@ -34,23 +34,23 @@ public class UIManager : MonoBehaviour
 	private void OnEnable()
 	{
 		//Check if the event exists to avoid errors
-		
-			_openUIDialogueEvent.OnEventRaised += OpenUIDialogue;
-		
-			_closeUIDialogueEvent.OnEventRaised += CloseUIDialogue;
-		
-			_openInventoryScreenForCookingEvent.OnEventRaised += SetInventoryScreenForCooking;
-		
-			_openInventoryScreenEvent.OnEventRaised += SetInventoryScreen;
-		
-			_closeInventoryScreenEvent.OnEventRaised += CloseInventoryScreen;
-		
-			_setInteractionEvent.OnEventRaised += SetInteractionPanel;
-		
-			_onSceneReady.OnEventRaised += ResetUI;
-		
 
-		
+		_openUIDialogueEvent.OnEventRaised += OpenUIDialogue;
+
+		_closeUIDialogueEvent.OnEventRaised += CloseUIDialogue;
+
+		_openInventoryScreenForCookingEvent.OnEventRaised += SetInventoryScreenForCooking;
+
+		_openInventoryScreenEvent.OnEventRaised += SetInventoryScreen;
+
+		_closeInventoryScreenEvent.OnEventRaised += CloseInventoryScreen;
+
+		_setInteractionEvent.OnEventRaised += SetInteractionPanel;
+
+		_onSceneReady.OnEventRaised += ResetUI;
+
+
+
 	}
 	private void OnDestroy()
 	{
@@ -75,14 +75,14 @@ public class UIManager : MonoBehaviour
 	}
 	private void Start()
 	{
-		
+
 	}
 
 	void ResetUI()
 	{
 		CloseUIDialogue();
 		CloseInventoryScreen();
-		SetInteractionPanel(false, InteractionType.None); 
+		SetInteractionPanel(false, InteractionType.None);
 	}
 
 	public void OpenUIDialogue(LocalizedString dialogueLine, ActorSO actor)

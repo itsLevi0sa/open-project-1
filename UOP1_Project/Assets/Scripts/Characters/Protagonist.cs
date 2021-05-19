@@ -100,7 +100,7 @@ public class Protagonist : MonoBehaviour
 		{
 			// This is used to set the speed to the maximum if holding the Shift key,
 			// to allow keyboard players to "run"
-			if(isRunning)
+			if (isRunning)
 				targetSpeed = 1f;
 
 			if (attackInput)

@@ -30,8 +30,8 @@ public class InventoryTypeTabFiller : MonoBehaviour
 			_tabImage.color = _deselectedIconColor;
 		}
 
-	/*	_actionButton.onClick.RemoveAllListeners();
-		_actionButton.onClick.AddListener(() => changeTabEvent.RaiseEvent(tabType));*/
+		/*	_actionButton.onClick.RemoveAllListeners();
+			_actionButton.onClick.AddListener(() => changeTabEvent.RaiseEvent(tabType));*/
 	}
 
 }

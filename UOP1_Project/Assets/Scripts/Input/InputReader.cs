@@ -216,7 +216,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 	public void OnChangeTab(InputAction.CallbackContext context)
 	{
 		if (context.phase == InputActionPhase.Performed)
-			menuSwitchTab.Invoke(context.ReadValue<float>()); 
+			menuSwitchTab.Invoke(context.ReadValue<float>());
 
 	}
 

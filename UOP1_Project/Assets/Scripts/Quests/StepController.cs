@@ -27,7 +27,7 @@ public class StepController : MonoBehaviour
 	{
 
 		_winDialogueEvent.OnEventRaised += PlayWinDialogue;
-		_loseDialogueEvent.OnEventRaised += PlayLoseDialogue; 
+		_loseDialogueEvent.OnEventRaised += PlayLoseDialogue;
 
 
 	}
@@ -67,9 +67,9 @@ public class StepController : MonoBehaviour
 
 	void StartDialogue()
 	{
-		
-			_startDialogueEvent.RaiseEvent(_currentDialogue);
-		
+
+		_startDialogueEvent.RaiseEvent(_currentDialogue);
+
 	}
 	void PlayLoseDialogue()
 	{
