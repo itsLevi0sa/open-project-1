@@ -5,21 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private  QuestManagerSO _questManager = default; 
+	[SerializeField]
+	private QuestManagerSO _questManager = default;
 	private void Start()
 	{
-        StartGame(); 
+		StartGame();
 	}
 	// Start is called before the first frame update
 	void StartGame()
-    {
-        _questManager.StartGame(); 
-    }
+	{
+		_questManager.StartGame();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 }
