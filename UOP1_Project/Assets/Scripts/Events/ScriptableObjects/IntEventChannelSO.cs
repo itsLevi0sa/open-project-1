@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class IntEventChannelSO : DescriptionBaseSO
 {
 	public UnityAction<int> OnEventRaised;
-	
+
 	public void RaiseEvent(int value)
 	{
 		if (OnEventRaised != null)

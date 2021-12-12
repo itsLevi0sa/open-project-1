@@ -23,9 +23,9 @@ public static class FileManager
 	public static bool LoadFromFile(string fileName, out string result)
 	{
 		var fullPath = Path.Combine(Application.persistentDataPath, fileName);
-		if(!File.Exists(fullPath))
+		if (!File.Exists(fullPath))
 		{
-			File.WriteAllText(fullPath, ""); 
+			File.WriteAllText(fullPath, "");
 		}
 		try
 		{
@@ -56,7 +56,7 @@ public static class FileManager
 			{
 				return false;
 			}
-			
+
 			File.Move(fullPath, newFullPath);
 		}
 		catch (Exception e)

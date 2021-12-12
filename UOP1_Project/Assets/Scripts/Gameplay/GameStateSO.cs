@@ -16,14 +16,14 @@ public enum GameState
 public class GameStateSO : DescriptionBaseSO
 {
 	public GameState CurrentGameState => _currentGameState;
-	
+
 	[Header("Game states")]
-	[SerializeField][ReadOnly] private GameState _currentGameState = default;
-	[SerializeField][ReadOnly] private GameState _previousGameState = default;
+	[SerializeField] [ReadOnly] private GameState _currentGameState = default;
+	[SerializeField] [ReadOnly] private GameState _previousGameState = default;
 
 	[Header("Broadcasting on")]
 	[SerializeField] private BoolEventChannelSO _onCombatStateEvent = default;
-	
+
 	private List<Transform> _alertEnemies;
 
 	private void Start()
@@ -85,7 +85,7 @@ public class GameStateSO : DescriptionBaseSO
 		{
 			_onCombatStateEvent.RaiseEvent(true);
 		}
-		
+
 		GameState stateToReturnTo = _previousGameState;
 		_previousGameState = _currentGameState;
 		_currentGameState = stateToReturnTo;

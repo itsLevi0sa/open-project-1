@@ -12,7 +12,7 @@ public class UIHealthBarManager : MonoBehaviour
 	private void OnEnable()
 	{
 		_UIUpdateNeeded.OnEventRaised += UpdateHeartImages;
-		
+
 		InitializeHealthBar();
 	}
 

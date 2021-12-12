@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
 	[SerializeField] private ItemEventChannelSO _giveItemEvent = default;
 	[SerializeField] private ItemEventChannelSO _addItemEvent = default;
 	[SerializeField] private ItemEventChannelSO _removeItemEvent = default;
-	
+
 	private void OnEnable()
 	{
 		_cookRecipeEvent.OnEventRaised += CookRecipeEventRaised;

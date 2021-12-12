@@ -5,7 +5,7 @@ using TMPro;
 
 public class LocationTeleporterButton : MonoBehaviour
 {
-    [SerializeField] private LocationSO _location;
+	[SerializeField] private LocationSO _location;
 	[SerializeField] private PathSO _path;
 	[SerializeField] private TextMeshProUGUI label;
 

@@ -10,7 +10,7 @@ using UnityEngine;
 public class DialogueDataChannelSO : DescriptionBaseSO
 {
 	public UnityAction<DialogueDataSO> OnEventRaised;
-	
+
 	public void RaiseEvent(DialogueDataSO dialogue)
 	{
 		if (OnEventRaised != null)

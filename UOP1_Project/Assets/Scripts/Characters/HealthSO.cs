@@ -8,8 +8,8 @@
 public class HealthSO : ScriptableObject
 {
 	[Tooltip("The initial health")]
-	[SerializeField][ReadOnly] private int _maxHealth;
-	[SerializeField][ReadOnly] private int _currentHealth;
+	[SerializeField] [ReadOnly] private int _maxHealth;
+	[SerializeField] [ReadOnly] private int _currentHealth;
 
 	public int MaxHealth => _maxHealth;
 	public int CurrentHealth => _currentHealth;
@@ -23,7 +23,7 @@ public class HealthSO : ScriptableObject
 	{
 		_currentHealth = newValue;
 	}
-	
+
 	public void InflictDamage(int DamageValue)
 	{
 		_currentHealth -= DamageValue;
@@ -32,7 +32,7 @@ public class HealthSO : ScriptableObject
 	public void RestoreHealth(int HealthValue)
 	{
 		_currentHealth += HealthValue;
-		if(_currentHealth > _maxHealth)
+		if (_currentHealth > _maxHealth)
 			_currentHealth = _maxHealth;
 	}
 }

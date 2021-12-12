@@ -18,7 +18,7 @@ public class InteractionManager : MonoBehaviour
 	[Header("Listening to")]
 	[SerializeField] private VoidEventChannelSO _onInteractionEnded = default;
 	[SerializeField] private PlayableDirectorChannelSO _onCutsceneStart = default;
-	
+
 	[ReadOnly] public InteractionType currentInteractionType; //This is checked/consumed by conditions in the StateMachine
 
 	private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); //To store the objects we the player could potentially interact with

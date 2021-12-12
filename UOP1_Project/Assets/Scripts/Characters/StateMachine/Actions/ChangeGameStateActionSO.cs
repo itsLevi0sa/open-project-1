@@ -12,7 +12,7 @@ public class ChangeGameStateActionSO : StateActionSO
 	[SerializeField] GameState _newGameState = default;
 	[SerializeField] Moment _whenToRun = default;
 	[SerializeField] private GameStateSO _gameState = default;
-	
+
 	protected override StateAction CreateAction() => new ChangeGameStateAction(_newGameState, _gameState, _whenToRun);
 }
 
@@ -69,6 +69,6 @@ public class ChangeGameStateAction : StateAction
 			ChangeState();
 		}
 	}
-	
-	public override void OnUpdate(){ }
+
+	public override void OnUpdate() { }
 }

@@ -7,7 +7,7 @@ public class DialogueTrack : PlayableTrack
 {
 	[SerializeField] public DialogueLineChannelSO PlayDialogueEvent;
 	[SerializeField] public VoidEventChannelSO PauseTimelineEvent;
-	
+
 	public override Playable CreateTrackMixer(PlayableGraph graph, GameObject go, int inputCount)
 	{
 		foreach (TimelineClip clip in GetClips())

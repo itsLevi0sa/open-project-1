@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 public class MenuSelectionHandler : MonoBehaviour
 {
 	[SerializeField] private InputReader _inputReader;
-	[SerializeField][ReadOnly] private GameObject _defaultSelection;
-	[SerializeField][ReadOnly] private GameObject _currentSelection;
-	[SerializeField][ReadOnly] private GameObject _mouseSelection;
+	[SerializeField] [ReadOnly] private GameObject _defaultSelection;
+	[SerializeField] [ReadOnly] private GameObject _currentSelection;
+	[SerializeField] [ReadOnly] private GameObject _mouseSelection;
 
 	private void OnEnable()
 	{

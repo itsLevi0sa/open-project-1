@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 public class PlayableDirectorChannelSO : DescriptionBaseSO
 {
 	public UnityAction<PlayableDirector> OnEventRaised;
-	
+
 	public void RaiseEvent(PlayableDirector playable)
 	{
 		if (OnEventRaised != null)

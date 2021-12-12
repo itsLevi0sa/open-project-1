@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EditorTeleporter : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
+	[SerializeField] private InputReader _inputReader;
 	[SerializeField] private GameObject _cheatMenu;
 	[SerializeField] private PathStorageSO _path;
 
@@ -29,7 +29,7 @@ public class EditorTeleporter : MonoBehaviour
 	public void Teleport(LocationSO where, PathSO whichEntrance)
 	{
 		//Avoid reloading the same Location, which would result in an error
-		if(where == _lastLocationTeleportedTo)
+		if (where == _lastLocationTeleportedTo)
 			return;
 
 		_path.lastPathTaken = whichEntrance;

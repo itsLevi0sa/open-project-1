@@ -33,7 +33,7 @@ public class CutsceneTrigger : MonoBehaviour
 				_playableDirector.Play();
 			}
 		}
-}
+	}
 
 	private void OnEnable()
 	{

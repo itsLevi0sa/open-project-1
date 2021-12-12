@@ -7,7 +7,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 {
 	[Space]
 	[SerializeField] private GameStateSO _gameStateManager;
-	
+
 	// Assign delegate{} to events to initialise them with an empty delegate
 	// so we can skip the null check when we use them
 
@@ -257,7 +257,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	{
 
 	}
-	
+
 	public void OnRightClick(InputAction.CallbackContext context)
 	{
 

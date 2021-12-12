@@ -14,7 +14,7 @@ public class UICreditsRoller : MonoBehaviour
 	[SerializeField] private RectTransform _mask = default;
 
 	public event UnityAction OnRollingEnded;
-	
+
 	private float _expectedFinishingPoint;
 
 

@@ -47,13 +47,13 @@ public class Damageable : MonoBehaviour
 
 	private void OnEnable()
 	{
-		if(_restoreHealth != null)
+		if (_restoreHealth != null)
 			_restoreHealth.OnEventRaised += Cure;
 	}
 
 	private void OnDisable()
 	{
-		if(_restoreHealth != null)
+		if (_restoreHealth != null)
 			_restoreHealth.OnEventRaised -= Cure;
 	}
 
@@ -94,10 +94,10 @@ public class Damageable : MonoBehaviour
 	public void Revive()
 	{
 		_currentHealthSO.SetCurrentHealth(_healthConfigSO.InitialHealth);
-		
+
 		if (_updateHealthUI != null)
 			_updateHealthUI.RaiseEvent();
-			
+
 		IsDead = false;
 	}
 
@@ -108,7 +108,7 @@ public class Damageable : MonoBehaviour
 	{
 		if (IsDead)
 			return;
-			
+
 		_currentHealthSO.RestoreHealth(healthToAdd);
 
 		if (_updateHealthUI != null)

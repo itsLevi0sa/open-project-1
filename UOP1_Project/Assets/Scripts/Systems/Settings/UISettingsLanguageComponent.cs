@@ -13,7 +13,7 @@ public class UISettingsLanguageComponent : MonoBehaviour
 	[SerializeField] private UIGenericButton _resetButton;
 
 	public event UnityAction<Locale> _save = delegate { };
-	
+
 	private int _currentSelectedOption = 0;
 	private int _savedSelectedOption = default;
 	private AsyncOperationHandle _initializeOperation;

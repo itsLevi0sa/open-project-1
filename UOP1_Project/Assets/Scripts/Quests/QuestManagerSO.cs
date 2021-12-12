@@ -252,22 +252,22 @@ public class QuestManagerSO : ScriptableObject
 	{
 		_currentStep = null;
 		if (_currentQuest != null)
-		if (_currentQuest.Steps.Count > _currentStepIndex)
-		{
-			_currentQuest.Steps[_currentStepIndex].FinishStep();
-			saveSystem.SaveDataToDisk();
-			if (_currentQuest.Steps.Count > _currentStepIndex + 1)
+			if (_currentQuest.Steps.Count > _currentStepIndex)
 			{
-				_currentStepIndex++;
-				StartStep();
+				_currentQuest.Steps[_currentStepIndex].FinishStep();
+				saveSystem.SaveDataToDisk();
+				if (_currentQuest.Steps.Count > _currentStepIndex + 1)
+				{
+					_currentStepIndex++;
+					StartStep();
 
-			}
-			else
-			{
+				}
+				else
+				{
 
-				EndQuest();
+					EndQuest();
+				}
 			}
-		}
 	}
 
 	void EndQuest()

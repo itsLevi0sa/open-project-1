@@ -74,7 +74,7 @@ public class UISettingFieldsFiller : MonoBehaviour
 
 
 	}
-	
+
 	int IsFullscreen()
 	{
 		if (Screen.fullScreen)

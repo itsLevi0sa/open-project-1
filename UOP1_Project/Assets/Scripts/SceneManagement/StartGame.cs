@@ -12,7 +12,7 @@ public class StartGame : MonoBehaviour
 	[SerializeField] private GameSceneSO _locationsToLoad;
 	[SerializeField] private SaveSystem _saveSystem = default;
 	[SerializeField] private bool _showLoadScreen = default;
-	
+
 	[Header("Broadcasting on")]
 	[SerializeField] private LoadEventChannelSO _loadLocation = default;
 
@@ -38,8 +38,8 @@ public class StartGame : MonoBehaviour
 	private void StartNewGame()
 	{
 		_hasSaveData = false;
-		
-		_saveSystem. WriteEmptySaveFile();
+
+		_saveSystem.WriteEmptySaveFile();
 		_saveSystem.SetNewGameData();
 		_loadLocation.RaiseEvent(_locationsToLoad, _showLoadScreen);
 	}
@@ -58,7 +58,7 @@ public class StartGame : MonoBehaviour
 	{
 		yield return StartCoroutine(_saveSystem.LoadSavedInventory());
 
-		_saveSystem.LoadSavedQuestlineStatus(); 
+		_saveSystem.LoadSavedQuestlineStatus();
 		var locationGuid = _saveSystem.saveData._locationId;
 		var asyncOperationHandle = Addressables.LoadAssetAsync<LocationSO>(locationGuid);
 

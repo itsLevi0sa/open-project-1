@@ -33,7 +33,7 @@ public class UISettingItemFiller : MonoBehaviour
 		_buttonNext.interactable = (selectedPaginationIndex < paginationCount - 1);
 		_buttonPrevious.interactable = (selectedPaginationIndex > 0);
 	}
-	
+
 	public void FillSettingField(int paginationCount, int selectedPaginationIndex, string selectedOption_int)
 	{
 		_pagination.SetPagination(paginationCount, selectedPaginationIndex);

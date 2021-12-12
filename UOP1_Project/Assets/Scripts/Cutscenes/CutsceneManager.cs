@@ -35,7 +35,7 @@ public class CutsceneManager : MonoBehaviour
 		_playCutsceneEvent.OnEventRaised += PlayCutscene;
 		_playDialogueEvent.OnEventRaised += PlayDialogueFromClip;
 		_pauseTimelineEvent.OnEventRaised += PauseTimeline;
-		_onLineEndedEvent.OnEventRaised += LineEnded ;
+		_onLineEndedEvent.OnEventRaised += LineEnded;
 	}
 
 	void PlayCutscene(PlayableDirector activePlayableDirector)

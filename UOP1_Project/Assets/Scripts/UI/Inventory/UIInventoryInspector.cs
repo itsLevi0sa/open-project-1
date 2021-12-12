@@ -11,7 +11,7 @@ public class UIInventoryInspector : MonoBehaviour
 
 		_inspectorDescription.FillDescription(itemToInspect);
 
-		if (isForCooking && availabilityArray!= null)
+		if (isForCooking && availabilityArray != null)
 		{
 			_recipeIngredients.FillIngredients(itemToInspect.IngredientsList, availabilityArray);
 			_recipeIngredients.gameObject.SetActive(true);

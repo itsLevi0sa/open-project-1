@@ -18,9 +18,9 @@ public class UIInventoryItem : MonoBehaviour
 	[SerializeField] private LocalizeSpriteEvent _bgLocalizedImage = default;
 
 	public UnityAction<ItemSO> ItemSelected;
-	
+
 	[HideInInspector] public ItemStack currentItem;
-	
+
 	bool _isSelected = false;
 
 	public void SetItem(ItemStack itemStack, bool isSelected)

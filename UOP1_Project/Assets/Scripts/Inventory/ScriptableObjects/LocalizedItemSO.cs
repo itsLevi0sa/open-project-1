@@ -7,7 +7,7 @@ using UnityEngine.Localization;
 [CreateAssetMenu(fileName = "LocalizedItem", menuName = "Inventory/Localized Item")]
 public class LocalizedItemSO : ItemSO
 {
-	[SerializeField] private bool _isLocalized = false; 
+	[SerializeField] private bool _isLocalized = false;
 	[SerializeField] private LocalizedSprite _localizePreviewImage = default;
 
 	public override bool IsLocalized => _isLocalized;

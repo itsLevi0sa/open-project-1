@@ -36,7 +36,7 @@ public class DialogueDataSO : ScriptableObject
 	[SerializeField] private List<Line> _lines = default;
 	[SerializeField] private DialogueType _dialogueType = default;
 	[SerializeField] private VoidEventChannelSO _endOfDialogueEvent = default;
-	
+
 	public VoidEventChannelSO EndOfDialogueEvent => _endOfDialogueEvent;
 	public List<Line> Lines => _lines;
 
@@ -101,7 +101,7 @@ public class Choice
 	public LocalizedString Response => _response;
 	public DialogueDataSO NextDialogue => _nextDialogue;
 	public ChoiceActionType ActionType => _actionType;
-	
+
 	public void SetNextDialogue(DialogueDataSO dialogue)
 	{
 		_nextDialogue = dialogue;

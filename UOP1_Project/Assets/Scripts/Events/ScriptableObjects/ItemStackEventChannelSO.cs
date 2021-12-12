@@ -10,7 +10,7 @@ using UnityEngine;
 public class ItemStackEventChannelSO : DescriptionBaseSO
 {
 	public UnityAction<ItemStack> OnEventRaised;
-	
+
 	public void RaiseEvent(ItemStack item)
 	{
 		if (OnEventRaised != null)

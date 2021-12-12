@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIInventoryTab : MonoBehaviour
 {
 	public UnityAction<InventoryTabSO> TabClicked;
-	
+
 	[SerializeField] private Image _tabImage = default;
 	[SerializeField] private Button _actionButton = default;
 	[SerializeField] private Color _selectedIconColor = default;

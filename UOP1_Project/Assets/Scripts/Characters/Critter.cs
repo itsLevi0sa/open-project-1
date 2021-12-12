@@ -4,7 +4,7 @@ public class Critter : MonoBehaviour
 {
 	[HideInInspector] public bool isPlayerInAlertZone;
 	[HideInInspector] public bool isPlayerInAttackZone;
-	
+
 	[ReadOnly] public Damageable currentTarget; //The StateMachine evaluates its health when needed
 
 	public void OnAlertTriggerChange(bool entered, GameObject who)

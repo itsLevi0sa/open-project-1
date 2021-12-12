@@ -168,7 +168,7 @@ public class DialogueManager : MonoBehaviour
 
 		_inputReader.AdvanceDialogueEvent -= OnAdvance;
 		_gameState.ResetToPreviousGameState();
-		
+
 		if (_gameState.CurrentGameState == GameState.Gameplay
 			|| _gameState.CurrentGameState == GameState.Combat)
 			_inputReader.EnableGameplayInput();

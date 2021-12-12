@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
 	public CinemachineImpulseSource impulseSource;
 	private bool _isRMBPressed;
 
-	[SerializeField][Range(.5f, 3f)] private float _speedMultiplier = 1f; //TODO: make this modifiable in the game settings											
+	[SerializeField] [Range(.5f, 3f)] private float _speedMultiplier = 1f; //TODO: make this modifiable in the game settings											
 	[SerializeField] private TransformAnchor _cameraTransformAnchor = default;
 	[SerializeField] private TransformAnchor _protagonistTransformAnchor = default;
 
@@ -48,7 +48,7 @@ public class CameraManager : MonoBehaviour
 	private void Start()
 	{
 		//Setup the camera target if the protagonist is already available
-		if(_protagonistTransformAnchor.isSet)
+		if (_protagonistTransformAnchor.isSet)
 			SetupProtagonistVirtualCamera();
 	}
 

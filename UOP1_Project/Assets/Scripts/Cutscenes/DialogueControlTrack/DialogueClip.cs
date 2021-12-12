@@ -8,7 +8,7 @@ public class DialogueClip : PlayableAsset, ITimelineClipAsset
 
 	[HideInInspector] public DialogueLineChannelSO PlayDialogueEvent;
 	[HideInInspector] public VoidEventChannelSO PauseTimelineEvent;
-	
+
 	// Having ClipCaps set to None makes sure that the clips can't be blended, extrapolated, looped, etc.
 	public ClipCaps clipCaps
 	{

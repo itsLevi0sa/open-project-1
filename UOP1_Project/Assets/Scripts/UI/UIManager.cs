@@ -126,12 +126,12 @@ public class UIManager : MonoBehaviour
 		_pauseScreen.gameObject.SetActive(false);
 
 		_gameStateManager.ResetToPreviousGameState();
-		
+
 		if (_gameStateManager.CurrentGameState == GameState.Gameplay
 			|| _gameStateManager.CurrentGameState == GameState.Combat)
-			{
-				_inputReader.EnableGameplayInput();
-			}
+		{
+			_inputReader.EnableGameplayInput();
+		}
 
 		_selectionHandler.Unselect();
 	}
@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
 			_loadMenuEvent.RaiseEvent(_mainMenu, false); //load main menu
 		}
 	}
-	
+
 	void HideBackToMenuConfirmationPopup()
 	{
 		_popupPanel.ClosePopupAction -= HideBackToMenuConfirmationPopup;

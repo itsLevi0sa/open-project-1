@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using  UnityEngine.Events;
+using UnityEngine.Events;
 
 public class RuntimeAnchorBase<T> : DescriptionBaseSO where T : UnityEngine.Object
 {
@@ -18,7 +18,7 @@ public class RuntimeAnchorBase<T> : DescriptionBaseSO where T : UnityEngine.Obje
 
 	public void Provide(T value)
 	{
-		if(value == null)
+		if (value == null)
 		{
 			Debug.LogError("A null value was provided to the " + this.name + " runtime anchor.");
 			return;
@@ -26,8 +26,8 @@ public class RuntimeAnchorBase<T> : DescriptionBaseSO where T : UnityEngine.Obje
 
 		_value = value;
 		isSet = true;
-		
-		if(OnAnchorProvided != null)
+
+		if (OnAnchorProvided != null)
 			OnAnchorProvided.Invoke();
 	}
 
