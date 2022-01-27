@@ -71,7 +71,7 @@ public class UISettingsGraphicsComponent : MonoBehaviour
 	private void OnDisable()
 	{
 		ResetSettings();
-		
+
 		_resolutionsField.OnNextOption -= NextResolution;
 		_resolutionsField.OnPreviousOption -= PreviousResolution;
 
@@ -104,7 +104,7 @@ public class UISettingsGraphicsComponent : MonoBehaviour
 		_savedShadowDistanceTier = _currentShadowDistanceTier;
 		_savedFullscreenState = _isFullscreen;
 	}
-	
+
 	public void Setup()
 	{
 		Init();
@@ -290,7 +290,7 @@ public class UISettingsGraphicsComponent : MonoBehaviour
 		float shadowDistance = _shadowDistanceTierList[_currentShadowDistanceTier].Distance;
 		_save.Invoke(_currentResolutionIndex, _currentAntiAliasingIndex, shadowDistance, _isFullscreen);
 	}
-	
+
 	public void ResetSettings()
 	{
 		_currentResolutionIndex = _savedResolutionIndex;
