@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Water
-  m_Shader: {fileID: -6465566751694194690, guid: 7c47ef6eb90bd094ea6e7a915c282fb3,
+  m_Name: ToonWater
+  m_Shader: {fileID: -6465566751694194690, guid: 2a4197381167d0f4b87751adef6fad07,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -28,17 +28,33 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e05045c6eff129542af7788a5bd70fba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: e05045c6eff129542af7788a5bd70fba, type: 3}
+        m_Scale: {x: -1.21, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalFromTexture_6D2F1CB1_Texture_0:
         m_Texture: {fileID: 2800000, guid: cdfa7f9cd6129ea4096c6af086f30325, type: 3}
@@ -48,7 +64,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_4994b9073f644091b00e821491990197_Texture_1:
+        m_Texture: {fileID: 2800000, guid: e05045c6eff129542af7788a5bd70fba, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_585d513bb1b44665994ad0d6c4002567_Texture_1:
         m_Texture: {fileID: 2800000, guid: e05045c6eff129542af7788a5bd70fba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -121,25 +145,33 @@ Material:
     - Wave_Scale: 5
     - Wave_Speed: 0.4
     - _AlphaClip: 0
+    - _Amount: 0.5
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _Foam: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Height: 0.5
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
+    - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 0.16
     - _SrcBlend: 1
     - _Surface: 0
+    - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -147,6 +179,8 @@ Material:
     - Color_3636DE63: {r: 0, g: 0.3879299, b: 0.50980395, a: 0.83137256}
     - Color_992873A2: {r: 0.33641863, g: 0.6792453, b: 0.4923038, a: 0}
     - Color_AF7C2181: {r: 1, g: 1, b: 1, a: 0.6666667}
+    - Color_eb3d386db51e42c1b577e60db74cd8d4: {r: 0.16051966, g: 0.37651148, b: 0.509434,
+        a: 0}
     - Far_Color: {r: 0.20392156, g: 0.43921566, b: 0.8156863, a: 0}
     - Foam_Color: {r: 1, g: 1, b: 1, a: 0.8509804}
     - Shallow_Water_Color: {r: 0.20784314, g: 0.7176471, b: 0.702836, a: 0.3254902}
@@ -155,6 +189,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Tint: {r: 0.53542185, g: 0.8672431, b: 0.9056604, a: 0.5}
   m_BuildTextureStacks: []
 --- !u!114 &6607172260569944357
 MonoBehaviour:
