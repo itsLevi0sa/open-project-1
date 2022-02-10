@@ -1771,6 +1771,100 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CameraControls"",
+            ""id"": ""f827be2b-fbd3-422a-8ece-4ba3d7439f8a"",
+            ""actions"": [
+                {
+                    ""name"": ""XYZMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""09e7a8e9-290a-4cfe-a8c4-0d13c3f19a75"",
+                    ""expectedControlType"": ""Vector3"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Keyboard WASDQE"",
+                    ""id"": ""6803d896-adc6-4c41-8875-90fcf762966c"",
+                    ""path"": ""3DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""21a29860-9a56-4222-b064-abffa6a7b9a9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardOrGamepad"",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ff654213-030a-43ef-aa80-5805598c893f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""14bbf9ac-1bbb-4727-a252-93fdc70272bc"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""88aed3a0-f376-4984-be63-01d08010f966"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""forward"",
+                    ""id"": ""5b99f907-ef51-4124-9111-15c5d5cd2c74"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""backward"",
+                    ""id"": ""dbf2b421-6010-4bf9-9aeb-d9352133eadb"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""XYZMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1832,6 +1926,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         // Cheats
         m_Cheats = asset.FindActionMap("Cheats", throwIfNotFound: true);
         m_Cheats_OpenCheatMenu = m_Cheats.FindAction("OpenCheatMenu", throwIfNotFound: true);
+        // CameraControls
+        m_CameraControls = asset.FindActionMap("CameraControls", throwIfNotFound: true);
+        m_CameraControls_XYZMovement = m_CameraControls.FindAction("XYZMovement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2203,6 +2300,39 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         }
     }
     public CheatsActions @Cheats => new CheatsActions(this);
+
+    // CameraControls
+    private readonly InputActionMap m_CameraControls;
+    private ICameraControlsActions m_CameraControlsActionsCallbackInterface;
+    private readonly InputAction m_CameraControls_XYZMovement;
+    public struct CameraControlsActions
+    {
+        private @GameInput m_Wrapper;
+        public CameraControlsActions(@GameInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @XYZMovement => m_Wrapper.m_CameraControls_XYZMovement;
+        public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraControlsActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraControlsActions instance)
+        {
+            if (m_Wrapper.m_CameraControlsActionsCallbackInterface != null)
+            {
+                @XYZMovement.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnXYZMovement;
+                @XYZMovement.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnXYZMovement;
+                @XYZMovement.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnXYZMovement;
+            }
+            m_Wrapper.m_CameraControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @XYZMovement.started += instance.OnXYZMovement;
+                @XYZMovement.performed += instance.OnXYZMovement;
+                @XYZMovement.canceled += instance.OnXYZMovement;
+            }
+        }
+    }
+    public CameraControlsActions @CameraControls => new CameraControlsActions(this);
     private int m_KeyboardOrGamepadSchemeIndex = -1;
     public InputControlScheme KeyboardOrGamepadScheme
     {
@@ -2250,5 +2380,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     public interface ICheatsActions
     {
         void OnOpenCheatMenu(InputAction.CallbackContext context);
+    }
+    public interface ICameraControlsActions
+    {
+        void OnXYZMovement(InputAction.CallbackContext context);
     }
 }
