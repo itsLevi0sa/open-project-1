@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class MultiInputButton : Button
 {
 	[ReadOnly] public bool IsSelected;
+	public bool isHighlighted=false;
 
 	private MenuSelectionHandler _menuSelectionHandler;
 
@@ -20,11 +21,13 @@ public class MultiInputButton : Button
 	public override void OnPointerEnter(PointerEventData eventData)
 	{
 		_menuSelectionHandler.HandleMouseEnter(gameObject);
+		isHighlighted = true;
 	}
 
 	public override void OnPointerExit(PointerEventData eventData)
 	{
 		_menuSelectionHandler.HandleMouseExit(gameObject);
+		isHighlighted = false;
 	}
 
 	public override void OnSelect(BaseEventData eventData)
@@ -47,4 +50,6 @@ public class MultiInputButton : Button
 		if (_menuSelectionHandler.AllowsSubmit())
 			base.OnSubmit(eventData);
 	}
+
+
 }

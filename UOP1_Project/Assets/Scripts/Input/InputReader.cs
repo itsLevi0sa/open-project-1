@@ -46,6 +46,9 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	// Cheats (has effect only in the Editor)
 	public event UnityAction CheatMenuEvent = delegate { };
 
+	//CameraFlythroughControls
+	public event UnityAction<Vector3> XYZMoveEvent = delegate { };
+
 	private GameInput _gameInput;
 
 	private void OnEnable()
@@ -58,6 +61,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 			_gameInput.Gameplay.SetCallbacks(this);
 			_gameInput.Dialogues.SetCallbacks(this);
 			_gameInput.Cheats.SetCallbacks(this);
+			//_gameInput.CameraControls.SetCallbacks(this);
 		}
 
 #if UNITY_EDITOR
@@ -211,6 +215,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		_gameInput.Menus.Enable();
 		_gameInput.Gameplay.Disable();
 		_gameInput.Dialogues.Enable();
+		_gameInput.CameraControls.Disable();
 	}
 
 	public void EnableGameplayInput()
@@ -218,14 +223,23 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		_gameInput.Menus.Disable();
 		_gameInput.Dialogues.Disable();
 		_gameInput.Gameplay.Enable();
+		_gameInput.CameraControls.Disable();
 	}
 
 	public void EnableMenuInput()
 	{
 		_gameInput.Dialogues.Disable();
 		_gameInput.Gameplay.Disable();
-
+		_gameInput.CameraControls.Disable();
 		_gameInput.Menus.Enable();
+	}
+
+	public void EnableCameraControlsInput()
+	{
+		_gameInput.Dialogues.Disable();
+		_gameInput.Gameplay.Disable();
+		_gameInput.CameraControls.Enable();
+		_gameInput.Menus.Disable();
 	}
 
 	public void DisableAllInput()
@@ -233,6 +247,7 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 		_gameInput.Gameplay.Disable();
 		_gameInput.Menus.Disable();
 		_gameInput.Dialogues.Disable();
+		_gameInput.CameraControls.Disable();
 	}
 
 	public void OnChangeTab(InputAction.CallbackContext context)
@@ -271,5 +286,10 @@ public class InputReader : DescriptionBaseSO, GameInput.IGameplayActions, GameIn
 	public void OnCloseInventory(InputAction.CallbackContext context)
 	{
 		CloseInventoryEvent.Invoke();
+	}
+
+	public void OnXYZMovement(InputAction.CallbackContext context)
+	{
+		XYZMoveEvent.Invoke(context.ReadValue<Vector3>());
 	}
 }
