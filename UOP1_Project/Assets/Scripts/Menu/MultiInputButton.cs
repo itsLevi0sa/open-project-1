@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class MultiInputButton : Button
 {
 	[ReadOnly] public bool IsSelected;
-	public bool isHighlighted=false;
+	public bool isHighlighted = false;
 
 	private MenuSelectionHandler _menuSelectionHandler;
 
