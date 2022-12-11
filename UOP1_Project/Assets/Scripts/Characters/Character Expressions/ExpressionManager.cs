@@ -14,10 +14,10 @@ using TMPro;
 [System.Serializable]
 public class ActorExpressions
 {
-	public ActorSO						Actor		   = default;
-	public ActorMood					CurrentMood    = ActorMood.NONE;
-	public MoodCollectionSO				DefaultMoodSet = null;
-	public List<MoodCollectionSO>		MoodSets       = new List<MoodCollectionSO>();
+	public ActorSO Actor = default;
+	public ActorMood CurrentMood = ActorMood.NONE;
+	public MoodCollectionSO DefaultMoodSet = null;
+	public List<MoodCollectionSO> MoodSets = new List<MoodCollectionSO>();
 	public LocalizedAsset<PhonemeSetSO> LocalizedAsset = new LocalizedAsset<PhonemeSetSO>();
 }
 
@@ -25,26 +25,26 @@ public class ActorExpressions
 [System.Serializable]
 public class ActorAnimationSettings
 {
-	public ActorSO Actor                = default;
-	public bool    PlayRandomAnimation  = true;
-	public int     ForcedAnimationIndex = -1;
+	public ActorSO Actor = default;
+	public bool PlayRandomAnimation = true;
+	public int ForcedAnimationIndex = -1;
 }
 
 public class ExpressionManager : MonoBehaviour
 {
 	// Inspector Assigned
 	[SerializeField] private List<ActorExpressions> _actorExpressions = new List<ActorExpressions>();
-	
+
 	[Header("Idle Blink Settings (all actors)")]
 	// Vector2 used to give min / max range that is used for random selection of float value
 	[Tooltip("BlinkTimeRange - defines a min / max range for how many seconds should elapse before blinking")]
-	[SerializeField] private Vector2 _blinkFrequencyRange              = new Vector2(0.5f, 2.0f);
+	[SerializeField] private Vector2 _blinkFrequencyRange = new Vector2(0.5f, 2.0f);
 	[Tooltip("MidBlinkTimeRange - defines a min / max range for how many seconds should elapse with the eye in mid-blink position")]
-	[SerializeField] private Vector2 _midBlinkDurationRange            = new Vector2(0.1f, 0.35f);
+	[SerializeField] private Vector2 _midBlinkDurationRange = new Vector2(0.1f, 0.35f);
 	[Tooltip("EyeClosedTimeRange - defines a min / max range for how many seconds should elapse with the eye in closed position")]
-	[SerializeField] private Vector2 _eyeClosedDurationRange           = new Vector2(0.2f, 1.5f);
+	[SerializeField] private Vector2 _eyeClosedDurationRange = new Vector2(0.2f, 1.5f);
 	[Tooltip("We want the character to blink less during dialogue...this controls the timing between blinks...eye closed duration and mid-blink duration do not need to be scaled")]
-	[SerializeField] private float   _dialogueBlinkFrequencyMultiplier = 2.0f;
+	[SerializeField] private float _dialogueBlinkFrequencyMultiplier = 2.0f;
 
 	[Header("Phoneme Settings (all actors)")]
 	[SerializeField] private float _maxMouthShapeDuration = 0.3f;
@@ -58,31 +58,31 @@ public class ExpressionManager : MonoBehaviour
 
 	// Hidden
 	[HideInInspector] public bool playRandomAnimation = true;
-	[HideInInspector] public int  animationIndex      = 0;
+	[HideInInspector] public int animationIndex = 0;
 
 	// Only actors in this list can be controlled by ExpressionManager
 	private List<ActorSO> _registeredActors = new List<ActorSO>();
 
 	// Dictionaries - for fast runtime lookup
-	private Dictionary<ActorSO, Dictionary<ActorMood, MoodCollectionSO>> _moodDictionary  = new Dictionary<ActorSO, Dictionary<ActorMood, MoodCollectionSO>>();
+	private Dictionary<ActorSO, Dictionary<ActorMood, MoodCollectionSO>> _moodDictionary = new Dictionary<ActorSO, Dictionary<ActorMood, MoodCollectionSO>>();
 	private Dictionary<ActorSO, ActorAnimationSettings> _actorAnimationSettingsDictionary = new Dictionary<ActorSO, ActorAnimationSettings>();
-	private Dictionary<ActorSO, ActorExpressions>       _actorExpressionDictionary        = new Dictionary<ActorSO, ActorExpressions>();
-	private Dictionary<ActorSO, MoodCollectionSO>       _activeMoodSet                    = new Dictionary<ActorSO, MoodCollectionSO>();
-	private Dictionary<ActorSO, MoodCollectionSO>       _lastMoodSet                      = new Dictionary<ActorSO, MoodCollectionSO>();
-	private Dictionary<ActorSO, PhonemeSetSO>           _activePhonemeSet                 = new Dictionary<ActorSO, PhonemeSetSO>();
-	private Dictionary<ActorSO, List<BlendTarget>>      _mouthBlendTargets                = new Dictionary<ActorSO, List<BlendTarget>>();
-	private Dictionary<ActorSO, float>                  _mouthTimer                       = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>                  _blinkTimer                       = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>                  _eye3DTimer                       = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>				    _mouth3DTimer                     = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>				    _startBlinkTime                   = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>					_closingMidBlinkDuration          = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>					_openingMidBlinkDuration          = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, float>					_eyeClosedDuration                = new Dictionary<ActorSO, float>();
-	private Dictionary<ActorSO, bool>					_isCharacterTalking               = new Dictionary<ActorSO, bool>();
-	private Dictionary<ActorSO, ActorEyeType>			_enableBlinking                   = new Dictionary<ActorSO, ActorEyeType>();
-	private Dictionary<ActorSO, ActorMouthType>			_enablePhonemes                   = new Dictionary<ActorSO, ActorMouthType>();
-	private Dictionary<ActorSO, bool>					_enableAnimations                 = new Dictionary<ActorSO, bool>();
+	private Dictionary<ActorSO, ActorExpressions> _actorExpressionDictionary = new Dictionary<ActorSO, ActorExpressions>();
+	private Dictionary<ActorSO, MoodCollectionSO> _activeMoodSet = new Dictionary<ActorSO, MoodCollectionSO>();
+	private Dictionary<ActorSO, MoodCollectionSO> _lastMoodSet = new Dictionary<ActorSO, MoodCollectionSO>();
+	private Dictionary<ActorSO, PhonemeSetSO> _activePhonemeSet = new Dictionary<ActorSO, PhonemeSetSO>();
+	private Dictionary<ActorSO, List<BlendTarget>> _mouthBlendTargets = new Dictionary<ActorSO, List<BlendTarget>>();
+	private Dictionary<ActorSO, float> _mouthTimer = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _blinkTimer = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _eye3DTimer = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _mouth3DTimer = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _startBlinkTime = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _closingMidBlinkDuration = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _openingMidBlinkDuration = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, float> _eyeClosedDuration = new Dictionary<ActorSO, float>();
+	private Dictionary<ActorSO, bool> _isCharacterTalking = new Dictionary<ActorSO, bool>();
+	private Dictionary<ActorSO, ActorEyeType> _enableBlinking = new Dictionary<ActorSO, ActorEyeType>();
+	private Dictionary<ActorSO, ActorMouthType> _enablePhonemes = new Dictionary<ActorSO, ActorMouthType>();
+	private Dictionary<ActorSO, bool> _enableAnimations = new Dictionary<ActorSO, bool>();
 	private bool _dictionariesBuilt = false;
 
 	// METHODS
@@ -264,7 +264,7 @@ public class ExpressionManager : MonoBehaviour
 					if (_blinkTimer[actor] < _startBlinkTime[actor])
 					{
 						// Even though eyes are probably already open, set them open here just in case
-						actor.SetEyeTexture(moodSet.EyeState_Open_2D);			
+						actor.SetEyeTexture(moodSet.EyeState_Open_2D);
 					}
 					else if (_blinkTimer[actor] >= _startBlinkTime[actor] && _blinkTimer[actor] < _closingMidBlinkDuration[actor])
 					{
@@ -308,7 +308,7 @@ public class ExpressionManager : MonoBehaviour
 					{
 						T = 100.0f * (1 - (_blinkTimer[actor] - _eyeClosedDuration[actor]) / (_openingMidBlinkDuration[actor] - _eyeClosedDuration[actor]));
 					}
-										
+
 					if (_blinkTimer[actor] >= _openingMidBlinkDuration[actor])
 					{
 						T = 0.0f;
@@ -358,7 +358,7 @@ public class ExpressionManager : MonoBehaviour
 					// Takes care of returning previously set blend values back to zero
 					if (bt.BlendWeight == 0.0f && actor.GetBlendWeight(bt.BlendShape) > 0.5f)
 					{
-						w = 100.0f *  (1 - T);
+						w = 100.0f * (1 - T);
 					}
 
 					actor.SetBlendTarget(bt.BlendShape, w);
@@ -369,7 +369,7 @@ public class ExpressionManager : MonoBehaviour
 			}
 
 			#endregion
-			
+
 			// 3D (blendshape) phonemes
 			#region (5) Handle 3D Blend Targets for Mouths
 
@@ -380,7 +380,7 @@ public class ExpressionManager : MonoBehaviour
 				{
 					if (list != null)
 					{
-						foreach(BlendTarget bt in list)
+						foreach (BlendTarget bt in list)
 						{
 							float T = Mathf.Clamp01(_mouthTimer[actor] / _maxMouthShapeDuration);
 
@@ -395,7 +395,7 @@ public class ExpressionManager : MonoBehaviour
 							}
 
 							actor.SetBlendTarget(bt.BlendShape, w);
-							
+
 							if (goal == 0.01f)
 							{
 								if (w <= goal)
@@ -415,7 +415,7 @@ public class ExpressionManager : MonoBehaviour
 					else
 					{
 						actor.SetDefaultMouthBlendShape();
-					}				
+					}
 				}
 				else
 				{
@@ -424,7 +424,7 @@ public class ExpressionManager : MonoBehaviour
 			}
 
 			#endregion
-	
+
 			// Record last mood so that it can be compared next cycle
 			_lastMoodSet[actor] = moodSet;
 		}
@@ -540,7 +540,7 @@ public class ExpressionManager : MonoBehaviour
 	{
 		_registeredActors.Remove(actor);
 	}
-	
+
 	private void OnDestroy()
 	{
 		// Make sure material properties revert to edit mode settings
@@ -678,12 +678,12 @@ public class ExpressionManager : MonoBehaviour
 		}
 
 		if (actorName == "Hamlet")
-		{ 
+		{
 			_goodHamletMoodText.text = "<color=green>Hamlet's <color=white>Mood:\n<size=150%><color=" + moodColor + ">" + mood.ToString().ToUpper();
 		}
 
 		if (actorName == "Evil Hamlet")
-		{ 
+		{
 			_evilHamletMoodText.text = "<color=red>Evil Hamlet's <color=white>Mood:\n<size=150%><color=" + moodColor + ">" + mood.ToString().ToUpper();
 		}
 
@@ -711,7 +711,7 @@ public class ExpressionManager : MonoBehaviour
 				{
 					_activeMoodSet.Add(actor, moodSet);
 				}
-				
+
 				if (TypeOfPhonemesEnabled(actor) != ActorMouthType.Undefined)
 				{
 					// Update the active PhonemeSet based on the mood
@@ -826,7 +826,7 @@ public class ExpressionManager : MonoBehaviour
 		{
 			if (phonemeKey == "." || _activePhonemeSet == null)
 			{
-					actor.SetDefaultMouthTexture();
+				actor.SetDefaultMouthTexture();
 			}
 			else
 			{

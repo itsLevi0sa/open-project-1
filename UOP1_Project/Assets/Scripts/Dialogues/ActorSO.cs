@@ -12,21 +12,21 @@ public class ActorSO : ScriptableObject
 	public LocalizedString ActorName { get => _actorName; }
 
 	// Inspector Assigned
-	[SerializeField] private LocalizedString   _actorName            = default;
-	[SerializeField] private Texture2D         _defaultEyeTexture    = default;
-	[SerializeField] private Texture2D         _defaultMouthShape    = default;
-	[SerializeField] private string            _defaultAnimClipTitle = default;
-	[SerializeField] private List<BlendTarget> _defaultEyeTargets    = default;
-	[SerializeField] private List<BlendTarget> _defaultMouthTargets  = default;
-	[SerializeField] private Material          _eyeMaterial          = default;
-	[SerializeField] private Material          _mouthMaterial        = default;
+	[SerializeField] private LocalizedString _actorName = default;
+	[SerializeField] private Texture2D _defaultEyeTexture = default;
+	[SerializeField] private Texture2D _defaultMouthShape = default;
+	[SerializeField] private string _defaultAnimClipTitle = default;
+	[SerializeField] private List<BlendTarget> _defaultEyeTargets = default;
+	[SerializeField] private List<BlendTarget> _defaultMouthTargets = default;
+	[SerializeField] private Material _eyeMaterial = default;
+	[SerializeField] private Material _mouthMaterial = default;
 
 	// Private
 	private Material _backupEyeMaterial;
 	private Material _backupMouthMaterial;
 	private List<float> _backupBlendShapes;
-	private HashSet<Animator>       _animator             = new HashSet<Animator>();
-	private SkinnedMeshRenderer     _smr                  = null;
+	private HashSet<Animator> _animator = new HashSet<Animator>();
+	private SkinnedMeshRenderer _smr = null;
 	private Dictionary<string, int> _blendShapeDictionary = new Dictionary<string, int>();
 
 	// Record textures and blend shapes before pressing play so that they can be restored when out of play mode
@@ -77,7 +77,7 @@ public class ActorSO : ScriptableObject
 	// override authority on what clip is playing ... via Animator.CrossFade()
 	public void RegisterAnimator(Animator animator)
 	{
-		_animator.Add(animator);		
+		_animator.Add(animator);
 	}
 
 	// This will remove an animator from our control
