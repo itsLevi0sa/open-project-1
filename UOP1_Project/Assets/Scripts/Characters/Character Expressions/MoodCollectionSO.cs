@@ -5,11 +5,11 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
 // The moods that characters can have
-public enum ActorMood      { NONE, NEUTRAL, HAPPY, SAD, SCARED, ANGRY, BORED, EXPLAINING, RANDOM }
+public enum ActorMood { NONE, NEUTRAL, HAPPY, SAD, SCARED, ANGRY, BORED, EXPLAINING, RANDOM }
 
 // Actor eyes / mouths can either be 2D (textures) or 3D (blendshapes) ... can mix and match
 // ex: 2D eyes and 3D mouth
-public enum ActorEyeType   { Undefined, TwoD, ThreeD }
+public enum ActorEyeType { Undefined, TwoD, ThreeD }
 public enum ActorMouthType { Undefined, TwoD, ThreeD }
 
 [System.Serializable]
@@ -20,9 +20,9 @@ public class LocalizedPhonemeSet : LocalizedAsset<PhonemeSetSO> { }
 public class MoodCollectionSO : ScriptableObject
 {
 	[Header("General Settings")]
-	public ActorSO        Actor;
-	public ActorMood      Mood;
-	public ActorEyeType   EyeType;
+	public ActorSO Actor;
+	public ActorMood Mood;
+	public ActorEyeType EyeType;
 	public ActorMouthType MouthType;
 
 	// TODO: Write an editor script that only displays the appropriate properties for the
@@ -34,11 +34,11 @@ public class MoodCollectionSO : ScriptableObject
 	public Texture2D EyeState_Closed_2D;
 
 	// 3D Eyes
-	public string            Blink_3D;
-	public float             MoodTransitionTime = 1.0f;
+	public string Blink_3D;
+	public float MoodTransitionTime = 1.0f;
 	public List<BlendTarget> EyeMoodTargets;
 	public List<BlendTarget> MouthMoodTargets;
-	
+
 	// 2D & 3D Mouths
 	public LocalizedPhonemeSet LocalizedPhonemeSet = default;
 

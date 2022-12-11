@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class BlendTarget
 {
-	public string						BlendShape;
-	[Range(0.0f, 100.0f)] public float  BlendWeight;
+	public string BlendShape;
+	[Range(0.0f, 100.0f)] public float BlendWeight;
 }
 
 // A Phoneme object associates Phoneme codes (ex. "AH") with its corresponding mouth texture or
@@ -16,8 +16,8 @@ public class BlendTarget
 [System.Serializable]
 public class Phoneme
 {
-	public string			 Name;
-	public List<string>		 Codes;
-	public Texture2D		 MouthShape;
+	public string Name;
+	public List<string> Codes;
+	public Texture2D MouthShape;
 	public List<BlendTarget> BlendTargets;
 }

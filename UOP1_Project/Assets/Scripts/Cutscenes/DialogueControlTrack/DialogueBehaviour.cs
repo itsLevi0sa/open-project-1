@@ -64,7 +64,7 @@ public class DialogueBehaviour : PlayableBehaviour
 			// Save this phoneme key so that it can be sent to the CutsceneManager
 			phonemeKey = newPhonemes[index];
 
-		//	Debug.Log("ACTIVE PHONEME = " + phonemeKey);
+			//	Debug.Log("ACTIVE PHONEME = " + phonemeKey);
 		}
 		else
 		{

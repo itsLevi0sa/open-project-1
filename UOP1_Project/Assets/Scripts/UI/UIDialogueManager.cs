@@ -16,7 +16,7 @@ public class UIDialogueManager : MonoBehaviour
 
 	#region DELETABLE_DEMO_CODE
 	[SerializeField] LocalizeStringEvent secondActorNameText = default;
-	[SerializeField] LocalizeStringEvent thirdActorNameText  = default;
+	[SerializeField] LocalizeStringEvent thirdActorNameText = default;
 	[SerializeField] GameObject backgroundPanel;
 	#endregion
 
