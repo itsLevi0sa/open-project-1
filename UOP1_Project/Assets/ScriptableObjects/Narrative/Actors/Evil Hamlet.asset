@@ -21,5 +21,7 @@ MonoBehaviour:
   _defaultEyeTexture: {fileID: 2800000, guid: 4440ee0823ba0c74aa1f980cdb583fc9, type: 3}
   _defaultMouthShape: {fileID: 2800000, guid: 5ffe54504bb2e614a81310190faa735c, type: 3}
   _defaultAnimClipTitle: Idle
+  _defaultEyeTargets: []
+  _defaultMouthTargets: []
   _eyeMaterial: {fileID: 2100000, guid: b9c8405a3ea3675448c5d8b8d5d25be9, type: 2}
   _mouthMaterial: {fileID: 2100000, guid: 410a0870e8c58fd489cef9c09146a8b0, type: 2}
