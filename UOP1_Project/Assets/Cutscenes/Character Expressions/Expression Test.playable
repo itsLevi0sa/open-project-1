@@ -628,7 +628,7 @@ MonoBehaviour:
     m_Start: 41.51666666666673
     m_ClipIn: 0
     m_Asset: {fileID: -8729913729906342419}
-    m_Duration: 5
+    m_Duration: 5.699999999999946
     m_TimeScale: 1
     m_ParentTrack: {fileID: -6174196632001709615}
     m_EaseInDuration: 0
@@ -1865,7 +1865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moodSet: {fileID: 11400000, guid: e74150c28be5bc842b5b73d12dc3695d, type: 2}
   _playRandomAnimation: 0
-  _animationIndex: -1
+  _animationIndex: 0
   _enableBlinking: 1
   _enablePhonemes: 1
   _enableAnimations: 1
