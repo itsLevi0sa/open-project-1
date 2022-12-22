@@ -22,7 +22,7 @@ public class UIDialogueManager : MonoBehaviour
 
 	public void SetDialogue(DialogueLineSO dialogueLine)
 	{
-		lineText.StringReference = dialogueLine.Sentence;
+		//lineText.StringReference = dialogueLine.Sentence;
 		actorNameText.StringReference = dialogueLine.Actor.ActorName;
 		secondActorNameText.StringReference = dialogueLine.Actor.ActorName;
 		thirdActorNameText.StringReference = dialogueLine.Actor.ActorName;
@@ -44,31 +44,63 @@ public class UIDialogueManager : MonoBehaviour
 
 		if (actorName == "Hamlet")
 		{
+			GameObject hamletActor = GameObject.Find("Hamlet");
+			GameObject speechBubble = hamletActor.transform.Find("SpeechBubble").gameObject;
+			GameObject bubbleCanvas = speechBubble.transform.Find("Canvas").gameObject;
+			LocalizeStringEvent speechBubbleText = bubbleCanvas.transform.Find("Text").gameObject.GetComponent<LocalizeStringEvent>();
+			LocalizeStringEvent actorNameText = bubbleCanvas.transform.Find("Name").gameObject.GetComponent<LocalizeStringEvent>();
+			actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = actorName;
+			speechBubbleText.StringReference = dialogueLine.Sentence;
+			speechBubble.SetActive(true);
+			StartCoroutine(DisableBubble(speechBubble, 4f));
+			
 			backgroundPanel.GetComponent<Image>().color = Color.white;
 			lineText.gameObject.GetComponent<TextMeshProUGUI>().color = Color.black;
 
-			secondActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-			thirdActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			//secondActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			//thirdActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
 		}
 
 		if (actorName == "Evil Hamlet")
 		{
-			backgroundPanel.GetComponent<Image>().color = Color.black;
-			lineText.gameObject.GetComponent<TextMeshProUGUI>().color = Color.white;
+			GameObject evilHamletActor = GameObject.Find("Evil Hamlet");
+			GameObject speechBubble = evilHamletActor.transform.Find("SpeechBubble").gameObject;
+			GameObject bubbleCanvas = speechBubble.transform.Find("Canvas").gameObject;
+			LocalizeStringEvent speechBubbleText = bubbleCanvas.transform.Find("Text").gameObject.GetComponent<LocalizeStringEvent>();
+			LocalizeStringEvent actorNameText = bubbleCanvas.transform.Find("Name").gameObject.GetComponent<LocalizeStringEvent>();
+			actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = actorName;
+			speechBubbleText.StringReference = dialogueLine.Sentence;
+			speechBubble.SetActive(true);
+			StartCoroutine(DisableBubble(speechBubble, 4f));
 
-			actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-			thirdActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			//actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			//thirdActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
 		}
 
 		if (actorName == "Townsfolk")
 		{
+			GameObject townsfolkActor = GameObject.Find("Townsfolk");
+			GameObject speechBubble = townsfolkActor.transform.Find("SpeechBubble").gameObject;
+			GameObject bubbleCanvas = speechBubble.transform.Find("Canvas").gameObject;
+			LocalizeStringEvent speechBubbleText = bubbleCanvas.transform.Find("Text").gameObject.GetComponent<LocalizeStringEvent>();
+			LocalizeStringEvent actorNameText = bubbleCanvas.transform.Find("Name").gameObject.GetComponent<LocalizeStringEvent>();
+			actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = actorName;
+			speechBubbleText.StringReference = dialogueLine.Sentence;
+			speechBubble.SetActive(true);
+			StartCoroutine(DisableBubble(speechBubble, 4f));
 			backgroundPanel.GetComponent<Image>().color = Color.blue;
 			lineText.gameObject.GetComponent<TextMeshProUGUI>().color = Color.white;
 
-			actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
-			secondActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			//actorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
+			//secondActorNameText.gameObject.GetComponent<TextMeshProUGUI>().text = "";
 		}
 
 		#endregion
+
+		IEnumerator DisableBubble(GameObject bubble, float duration)
+		{
+			yield return new WaitForSeconds(duration);
+			bubble.SetActive(false);
+		}
 	}
 }
