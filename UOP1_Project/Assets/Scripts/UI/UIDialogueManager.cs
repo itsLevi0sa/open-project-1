@@ -53,7 +53,7 @@ public class UIDialogueManager : MonoBehaviour
 			speechBubbleText.StringReference = dialogueLine.Sentence;
 			speechBubble.SetActive(true);
 			StartCoroutine(DisableBubble(speechBubble, 4f));
-			
+
 			backgroundPanel.GetComponent<Image>().color = Color.white;
 			lineText.gameObject.GetComponent<TextMeshProUGUI>().color = Color.black;
 
