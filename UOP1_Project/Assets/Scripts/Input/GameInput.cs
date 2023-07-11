@@ -1820,6 +1820,24 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseMove"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fafa675f-81a3-46b6-a480-e909755a85c5"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""4bead6c5-101e-4ae7-a5ff-aea7d8c99713"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1954,6 +1972,28 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Accelerate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0b27588-ad01-4fa4-9433-dcefe73ab87c"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aea01ee-0ebc-46ce-8006-88ade2eb14f3"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -2024,6 +2064,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_CameraControls_Camera_Rotate_Toggle = m_CameraControls.FindAction("Camera_Rotate_Toggle", throwIfNotFound: true);
         m_CameraControls_Camera_Zoom = m_CameraControls.FindAction("Camera_Zoom", throwIfNotFound: true);
         m_CameraControls_Accelerate = m_CameraControls.FindAction("Accelerate", throwIfNotFound: true);
+        m_CameraControls_MouseMove = m_CameraControls.FindAction("MouseMove", throwIfNotFound: true);
+        m_CameraControls_Click = m_CameraControls.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -2404,6 +2446,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_CameraControls_Camera_Rotate_Toggle;
     private readonly InputAction m_CameraControls_Camera_Zoom;
     private readonly InputAction m_CameraControls_Accelerate;
+    private readonly InputAction m_CameraControls_MouseMove;
+    private readonly InputAction m_CameraControls_Click;
     public struct CameraControlsActions
     {
         private @GameInput m_Wrapper;
@@ -2413,6 +2457,8 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Camera_Rotate_Toggle => m_Wrapper.m_CameraControls_Camera_Rotate_Toggle;
         public InputAction @Camera_Zoom => m_Wrapper.m_CameraControls_Camera_Zoom;
         public InputAction @Accelerate => m_Wrapper.m_CameraControls_Accelerate;
+        public InputAction @MouseMove => m_Wrapper.m_CameraControls_MouseMove;
+        public InputAction @Click => m_Wrapper.m_CameraControls_Click;
         public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2437,6 +2483,12 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Accelerate.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnAccelerate;
                 @Accelerate.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnAccelerate;
                 @Accelerate.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnAccelerate;
+                @MouseMove.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnMouseMove;
+                @MouseMove.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnMouseMove;
+                @MouseMove.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnMouseMove;
+                @Click.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_CameraControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -2456,6 +2508,12 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Accelerate.started += instance.OnAccelerate;
                 @Accelerate.performed += instance.OnAccelerate;
                 @Accelerate.canceled += instance.OnAccelerate;
+                @MouseMove.started += instance.OnMouseMove;
+                @MouseMove.performed += instance.OnMouseMove;
+                @MouseMove.canceled += instance.OnMouseMove;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -2515,5 +2573,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnCamera_Rotate_Toggle(InputAction.CallbackContext context);
         void OnCamera_Zoom(InputAction.CallbackContext context);
         void OnAccelerate(InputAction.CallbackContext context);
+        void OnMouseMove(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }
