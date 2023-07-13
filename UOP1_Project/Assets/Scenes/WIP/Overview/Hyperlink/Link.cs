@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Link : MonoBehaviour 
 {
-
+	/*
 	public void OpenLinkJSPlugin()
 	{
 		#if !UNITY_EDITOR
@@ -14,5 +14,5 @@ public class Link : MonoBehaviour
 
 	[DllImport("__Internal")]
 	private static extern void openWindow(string url);
-
+	*/
 }
