@@ -7,189 +7,190 @@ using System.Runtime.InteropServices;   //used to set position of mouse
 
 public class CustomCursor : MonoBehaviour
 {
-    Rigidbody2D selectedRigidBody;
-    Vector2 selectedOffset;
-    Transform _3dCursor;    //the world position of the virtual cursor
-    Transform _virtualCursor;   //the ui cursor
-    Transform _operationalCursor;   //the system operational cursor
+	Rigidbody2D selectedRigidBody;
+	Vector2 selectedOffset;
+	Transform _3dCursor;    //the world position of the virtual cursor
+	Transform _virtualCursor;   //the ui cursor
+	Transform _operationalCursor;   //the system operational cursor
 
-    private bool isRotating = false;
-    //public InteractablesManager interactablesManager;
-    private Transform _interactable;
+	private bool isRotating = false;
+	//public InteractablesManager interactablesManager;
+	private Transform _interactable;
 
-    //Cursor
-    public Texture2D _virtualCursorPanTexture;
-    public Texture2D _virtualCursorDefaultTexture;
-    public GameObject _3dCursorObject;
-    public CursorMode _cursorMode;
+	//Cursor
+	public Texture2D _virtualCursorPanTexture;
+	public Texture2D _virtualCursorDefaultTexture;
+	public GameObject _3dCursorObject;
+	public CursorMode _cursorMode;
 
-    public Camera cam;
-    bool is3DCursorBound = false;
-    public CameraController camController;
+	public Camera cam;
+	bool is3DCursorBound = false;
+	public CameraController camController;
 
-    public Image virtualCursor;
-    public Sprite virtualCursorDefaultMode;
-    public Sprite virtualCursorRotateMode;
-    Vector2 _virtualCursorPosLast;
-    Vector2 _virtualCursorPos;
-    Vector3 _3dCursorPos;
-    Vector2 _operationalCursorDelta;
+	public Image virtualCursor;
+	public Sprite virtualCursorDefaultMode;
+	public Sprite virtualCursorRotateMode;
+	Vector2 _virtualCursorPosLast;
+	Vector2 _virtualCursorPos;
+	Vector3 _3dCursorPos;
+	Vector2 _operationalCursorDelta;
 
-    [DllImport("user32.dll")]
-    static extern bool SetCursorPos(int X, int Y);
+	[DllImport("user32.dll")]
+	static extern bool SetCursorPos(int X, int Y);
 
-    private void Start()
-    {
+	private void Start()
+	{
 
-    }
+	}
 
-    public void OSCursorVisible(bool value) { }
-    public static void CursorPoint(bool enable) { }
+	public void OSCursorVisible(bool value) { }
+	public static void CursorPoint(bool enable) { }
 
-    public void OnOperationalCursorPositionToCenter(InputAction.CallbackContext context)
-    {
-        CenterOperationalCursorPosition();
-    }
-    public void CenterOperationalCursorPosition()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
-        Debug.Log("CameraPositionToCenter!");
-    }
+	public void OnOperationalCursorPositionToCenter(InputAction.CallbackContext context)
+	{
+		CenterOperationalCursorPosition();
+	}
+	public void CenterOperationalCursorPosition()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = true;
+		Debug.Log("CameraPositionToCenter!");
+	}
 
-    public void OnCursorContinueFromCenter(InputAction.CallbackContext context)
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Debug.Log("CameraContinueFromCenter!");
-    }
+	public void OnCursorContinueFromCenter(InputAction.CallbackContext context)
+	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		Debug.Log("CameraContinueFromCenter!");
+	}
 
-    public void OnCursorSpecificPosition(InputAction.CallbackContext context)
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        SetCursorPos(513, 514);
-        Debug.Log("Cursor on specific position!");
-    }
-    public void MoveCursor(Vector3 delta) {
-        
-    }
+	public void OnCursorSpecificPosition(InputAction.CallbackContext context)
+	{
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		SetCursorPos(513, 514);
+		Debug.Log("Cursor on specific position!");
+	}
+	public void MoveCursor(Vector3 delta)
+	{
 
-    public void OnVirtualCursorMove(InputAction.CallbackContext context)
-    {
-        _virtualCursorPos = context.ReadValue<Vector2>();
-        _3dCursorObject.transform.position = new Vector3(0, 0, 0);
-        //Debug.Log("virtualCursorPos x: " + (int)_virtualCursorPos.x + " virtualCursorPos y: " + (int)_virtualCursorPos.y);
-    }
+	}
 
-    public void GetMouseDelta(InputAction.CallbackContext context)
-    {
-        _operationalCursorDelta= context.ReadValue<Vector2>();
-        UpdateVirtualCursorMovement();
-        RepositionMouseOnScreen();
-        Update3dCursorMovement();
-    }
+	public void OnVirtualCursorMove(InputAction.CallbackContext context)
+	{
+		_virtualCursorPos = context.ReadValue<Vector2>();
+		_3dCursorObject.transform.position = new Vector3(0, 0, 0);
+		//Debug.Log("virtualCursorPos x: " + (int)_virtualCursorPos.x + " virtualCursorPos y: " + (int)_virtualCursorPos.y);
+	}
 
-    public void UpdateVirtualCursorMovement()
-    {
-        _virtualCursorPos += _operationalCursorDelta;
-        
-        virtualCursor.GetComponent<RectTransform>().anchoredPosition = _virtualCursorPos;
-        CustomCursorInteraction();
-    }
+	public void GetMouseDelta(InputAction.CallbackContext context)
+	{
+		_operationalCursorDelta = context.ReadValue<Vector2>();
+		UpdateVirtualCursorMovement();
+		RepositionMouseOnScreen();
+		Update3dCursorMovement();
+	}
 
-    public void CustomCursorInteraction()
-    {
-        if (_interactable != null)
-        {
-            _interactable.GetComponent<Target>().DefaultColor();
-        }
+	public void UpdateVirtualCursorMovement()
+	{
+		_virtualCursorPos += _operationalCursorDelta;
 
-        Vector2 customCursorScreenPos = new Vector2(virtualCursor.transform.position.x, virtualCursor.transform.position.y);
-        Ray ray = cam.ScreenPointToRay(customCursorScreenPos);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
-        {
-            if (hitInfo.collider.gameObject.GetComponent<Target>() != null)
-            {
-                hitInfo.collider.gameObject.GetComponent<Target>().HighlightColor();
-                _interactable = hitInfo.collider.gameObject.transform;
-            }
-        }
-    }
+		virtualCursor.GetComponent<RectTransform>().anchoredPosition = _virtualCursorPos;
+		CustomCursorInteraction();
+	}
 
-    public void OnRotateToggle(InputAction.CallbackContext context)
-    {
-        isRotating = context.ReadValue<float>() == 1;
-        if (isRotating)
-        {
-            virtualCursor.GetComponent<Image>().color = Color.white;
-            virtualCursor.GetComponent<Image>().sprite = virtualCursorRotateMode;
-        }
-        else
-        {
-            virtualCursor.GetComponent<Image>().color = Color.black;
-            virtualCursor.GetComponent<Image>().sprite = virtualCursorDefaultMode;
-        }
-    }
+	public void CustomCursorInteraction()
+	{
+		if (_interactable != null)
+		{
+			_interactable.GetComponent<Target>().DefaultColor();
+		}
 
-    public void OnRotate(InputAction.CallbackContext context)
-    {
-        if (isRotating)
-        {
-            virtualCursor.GetComponent<Image>().color = Color.white;
-            virtualCursor.GetComponent<Image>().sprite = virtualCursorRotateMode;
-        }
-        else
-        {
-            virtualCursor.GetComponent<Image>().color = Color.black;
-            virtualCursor.GetComponent<Image>().sprite = virtualCursorDefaultMode;
-        }
-    }
+		Vector2 customCursorScreenPos = new Vector2(virtualCursor.transform.position.x, virtualCursor.transform.position.y);
+		Ray ray = cam.ScreenPointToRay(customCursorScreenPos);
+		if (Physics.Raycast(ray, out RaycastHit hitInfo))
+		{
+			if (hitInfo.collider.gameObject.GetComponent<Target>() != null)
+			{
+				hitInfo.collider.gameObject.GetComponent<Target>().HighlightColor();
+				_interactable = hitInfo.collider.gameObject.transform;
+			}
+		}
+	}
 
-    public void RepositionMouseOnScreen()
-    {
-       if(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x > Screen.width / 2)
-        {
-            virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(-Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
-            _virtualCursorPos = new Vector2(-Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-        if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.x < -Screen.width / 2)
-        {
-            virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
-            _virtualCursorPos = new Vector2(Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
-        }
-        if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.y > Screen.height / 2)
-        {
-            virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, -Screen.height / 2);
-            _virtualCursorPos = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, -Screen.height / 2);
-        }
-        if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.y < -Screen.height / 2)
-        {
-            virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, Screen.height / 2);
-            _virtualCursorPos = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, Screen.height / 2);
-        }
-    }
+	public void OnRotateToggle(InputAction.CallbackContext context)
+	{
+		isRotating = context.ReadValue<float>() == 1;
+		if (isRotating)
+		{
+			virtualCursor.GetComponent<Image>().color = Color.white;
+			virtualCursor.GetComponent<Image>().sprite = virtualCursorRotateMode;
+		}
+		else
+		{
+			virtualCursor.GetComponent<Image>().color = Color.black;
+			virtualCursor.GetComponent<Image>().sprite = virtualCursorDefaultMode;
+		}
+	}
 
-    public void Update3dCursorMovement()
-    {
-        _3dCursorPos = cam.ScreenToWorldPoint(new Vector3(_virtualCursorPos.x+Screen.width/2, _virtualCursorPos.y + Screen.height/2, cam.nearClipPlane+1));
-        _3dCursorObject.transform.position = _3dCursorPos;
-    }
+	public void OnRotate(InputAction.CallbackContext context)
+	{
+		if (isRotating)
+		{
+			virtualCursor.GetComponent<Image>().color = Color.white;
+			virtualCursor.GetComponent<Image>().sprite = virtualCursorRotateMode;
+		}
+		else
+		{
+			virtualCursor.GetComponent<Image>().color = Color.black;
+			virtualCursor.GetComponent<Image>().sprite = virtualCursorDefaultMode;
+		}
+	}
 
-    ///<summary>
-    ///Cursor follows the rigidbody with offset. To stop following pass null
-    ///</summary>
-    public void Follow(Rigidbody2D body)
-    {
-        selectedRigidBody = body;
-        if (body)
-        {
-            selectedOffset = body.position;
-            selectedOffset -= new Vector2(_3dCursor.position.x, _3dCursor.position.y);
-        }
-    }
+	public void RepositionMouseOnScreen()
+	{
+		if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.x > Screen.width / 2)
+		{
+			virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(-Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
+			_virtualCursorPos = new Vector2(-Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
+		}
+		if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.x < -Screen.width / 2)
+		{
+			virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
+			_virtualCursorPos = new Vector2(Screen.width / 2, virtualCursor.GetComponent<RectTransform>().anchoredPosition.y);
+		}
+		if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.y > Screen.height / 2)
+		{
+			virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, -Screen.height / 2);
+			_virtualCursorPos = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, -Screen.height / 2);
+		}
+		if (virtualCursor.GetComponent<RectTransform>().anchoredPosition.y < -Screen.height / 2)
+		{
+			virtualCursor.GetComponent<RectTransform>().anchoredPosition = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, Screen.height / 2);
+			_virtualCursorPos = new Vector2(virtualCursor.GetComponent<RectTransform>().anchoredPosition.x, Screen.height / 2);
+		}
+	}
 
-    /*
+	public void Update3dCursorMovement()
+	{
+		_3dCursorPos = cam.ScreenToWorldPoint(new Vector3(_virtualCursorPos.x + Screen.width / 2, _virtualCursorPos.y + Screen.height / 2, cam.nearClipPlane + 1));
+		_3dCursorObject.transform.position = _3dCursorPos;
+	}
+
+	///<summary>
+	///Cursor follows the rigidbody with offset. To stop following pass null
+	///</summary>
+	public void Follow(Rigidbody2D body)
+	{
+		selectedRigidBody = body;
+		if (body)
+		{
+			selectedOffset = body.position;
+			selectedOffset -= new Vector2(_3dCursor.position.x, _3dCursor.position.y);
+		}
+	}
+
+	/*
     public void SetCursorPosition(Vector3 pos, bool normalized) { }
     public Vector2 GetCursorPositionWorld() { }
     public Vector2 GetCursorPositionScreen(bool normalized) { }

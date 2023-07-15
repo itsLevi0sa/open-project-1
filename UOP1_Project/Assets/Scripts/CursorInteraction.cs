@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CursorInteraction : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("highlight!");
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		Debug.Log("highlight!");
+	}
 }

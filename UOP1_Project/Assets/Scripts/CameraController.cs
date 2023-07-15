@@ -79,14 +79,14 @@ public class CameraController : MonoBehaviour
 		//SetCursorPos(xPos, yPos);//Call this when you want to set the mouse position
 		Cursor.lockState = CursorLockMode.Confined;
 		if (hideSystemCursor == true)
-        {
+		{
 			Cursor.visible = false;
 		}
-        else
-        {
+		else
+		{
 			Cursor.visible = true;
 		}
-		
+
 
 		Cursor.SetCursor(_cursorDefaultTexture, _hotSpot, _cursorMode);
 
@@ -116,13 +116,13 @@ public class CameraController : MonoBehaviour
 	}
 
 	/// Calculates a new position based on various properties
-	
+
 	private void UpdateCameraTarget()
 	{
 		//_cameraPositionTarget = (Vector3.up * LookOffset) + (Quaternion.AngleAxis(CameraAngle, Vector3.right) * Vector3.back) * _currentZoomAmount;
 		//_cameraPositionTarget = _actualCamera.transform.rotation * Vector3.back * _currentZoomAmount;
 	}
-	
+
 
 	/// Sets whether the player has the right mouse button down
 	public void OnRotateToggle(InputAction.CallbackContext context)
@@ -183,7 +183,7 @@ public class CameraController : MonoBehaviour
 
 	private void Update()
 	{
-		
+
 
 	}
 	private void LateUpdate()
@@ -199,7 +199,7 @@ public class CameraController : MonoBehaviour
 		//Pitch
 		transform.rotation *= Quaternion.AngleAxis(_mouseDelta.y * Time.deltaTime * RotationSpeed, Vector3.left);
 		//gizmoCam.transform.rotation *= Quaternion.AngleAxis(_mouseDelta.y * Time.deltaTime * RotationSpeed, Vector3.left);
-		
+
 		//Yaw
 		transform.rotation = Quaternion.Euler(
 			transform.eulerAngles.x,
@@ -242,11 +242,11 @@ public class CameraController : MonoBehaviour
 	{
 		_mousePos = context.ReadValue<Vector2>();
 		//Debug.Log("mousePos x: " + (int)_mousePos.x + " mousePos y: " + (int)_mousePos.y);
-		
+
 		if (_rightMouseDown)
 		{
 			if (buildForWebgl == false)
-            {
+			{
 				if ((int)_mousePos.x >= Screen.width - 2)
 				{
 					SetCursorPos(screenOffset_x, Screen.height + screenOffset_y - (int)_mousePos.y);
@@ -264,7 +264,7 @@ public class CameraController : MonoBehaviour
 					SetCursorPos((int)_mousePos.x + screenOffset_x, screenOffset_y + cursorSize);
 				}
 			}
-			
+
 		}
 
 		/*
@@ -283,5 +283,5 @@ public class CameraController : MonoBehaviour
 		}
 		*/
 	}
-	
+
 }
