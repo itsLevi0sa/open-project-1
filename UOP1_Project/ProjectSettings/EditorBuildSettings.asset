@@ -8,12 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Initialization.unity
     guid: e8df4c5a458acc5489b2865e6b789224
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WIP/Overview/BeachFreelook.unity
     guid: dfcd7a395ec23f840adf8ed0ad11c71e
   - enabled: 0
     path: Assets/Scenes/WIP/Overview/TutorialOverviewScene.unity
     guid: f032a1779a3ff8b4d9fd683b735705d9
+  - enabled: 1
+    path: Assets/Scenes/WIP/Overview/BeachWebgl2.unity
+    guid: 19fde2ddaecbfe145bd167396d837726
+  - enabled: 0
+    path: Assets/Scenes/ProjectDemo.unity
+    guid: 5613113ac572db1458f01d00b66969bf
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 758daf1c1b96e4978a5b9b3f5815abf1,
       type: 2}
