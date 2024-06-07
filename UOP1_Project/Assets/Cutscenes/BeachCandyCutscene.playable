@@ -231,11 +231,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: 6d2e690c06cfc9b40a859c9df8b49734, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &-8089960100506046346
@@ -299,11 +299,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: c7902af5c8e25244f94914ce51e7ea8a, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &-7858365236190937214
@@ -329,11 +329,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: c7902af5c8e25244f94914ce51e7ea8a, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &-7852754822880584660
@@ -509,7 +509,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -701,25 +719,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -935,49 +935,13 @@ MonoBehaviour:
     m_BlendOutDuration: 0.8833333333333613
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1126,11 +1090,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: 027d026cf519df04eb8b7bf251472e13, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &-6403987303810480763
@@ -1866,11 +1830,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: c7902af5c8e25244f94914ce51e7ea8a, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &-1572046678807531826
@@ -2180,11 +2144,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: 027d026cf519df04eb8b7bf251472e13, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &773694970127727041
@@ -2735,11 +2699,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: 027d026cf519df04eb8b7bf251472e13, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &1290932374823098944
@@ -3110,11 +3074,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: c7902af5c8e25244f94914ce51e7ea8a, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &1805101305162252557
@@ -4572,11 +4536,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: 027d026cf519df04eb8b7bf251472e13, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &4618795288292948711
@@ -5804,11 +5768,11 @@ MonoBehaviour:
       m_WaitForCompletion: 1
     _actor: {fileID: 11400000, guid: 027d026cf519df04eb8b7bf251472e13, type: 2}
     _pauseWhenClipEnds: 0
+    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
     PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890,
       type: 2}
     PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020,
       type: 2}
-    LineEndedEvent: {fileID: 11400000, guid: 8c589a71a937d334db35937f7b5bb25e, type: 2}
   PlayDialogueEvent: {fileID: 11400000, guid: d987db4881d794f2da0013a89588d890, type: 2}
   PauseTimelineEvent: {fileID: 11400000, guid: 9b0fb5f181adc6b4ca020743fed6c020, type: 2}
 --- !u!114 &7383442523289605024

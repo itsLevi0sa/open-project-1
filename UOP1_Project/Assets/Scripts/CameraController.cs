@@ -12,13 +12,14 @@ public class CameraController : MonoBehaviour
 	[Tooltip("The angle that we want the camera to be at.")]
 	public float CameraAngle;
 	[Tooltip("The default amount the player is zoomed into the game world.")]
-	public float DefaultZoom;
-	[Tooltip("The most a player can zoom in to the game world.")]
-	public float ZoomMax;
-	[Tooltip("The furthest point a player can zoom back from the game world.")]
-	public float ZoomMin;
-	[Tooltip("How fast the camera rotates")]
+	//public float DefaultZoom;
+	//[Tooltip("The most a player can zoom in to the game world.")]
+	//public float ZoomMax;
+	//[Tooltip("The furthest point a player can zoom back from the game world.")]
+	//public float ZoomMin;
+	//[Tooltip("How fast the camera rotates")]
 	public float RotationSpeed;
+	private Transform _interactable;
 
 	//Cursor
 	public Texture2D _cursorPanTexture;
@@ -44,6 +45,7 @@ public class CameraController : MonoBehaviour
 	//Camera specific variables
 	private Camera _actualCamera;
 	private Vector3 _cameraPositionTarget;
+	public Transform cameraStartingPos;
 
 	//Zoom variables
 	private float _currentZoomAmount;
@@ -97,7 +99,8 @@ public class CameraController : MonoBehaviour
 		_actualCamera.transform.rotation = Quaternion.AngleAxis(CameraAngle, Vector3.right);
 
 		//Set the position of the camera based on the look offset, angle and default zoom properties. This will make sure we're focusing on the right focal point.
-		CurrentZoom = DefaultZoom;
+		//CurrentZoom = DefaultZoom;
+		_moveTarget = cameraStartingPos.transform.position;
 		_actualCamera.transform.position = _cameraPositionTarget;
 
 		//Set the initial rotation value
@@ -165,7 +168,7 @@ public class CameraController : MonoBehaviour
 		}
 
 		// Adjust the current zoom value based on the direction of the scroll - this is clamped to our zoom min/max. 
-		CurrentZoom = Mathf.Clamp(_currentZoomAmount - context.ReadValue<Vector2>().y, ZoomMax, ZoomMin);
+		//CurrentZoom = Mathf.Clamp(_currentZoomAmount - context.ReadValue<Vector2>().y, ZoomMax, ZoomMin);
 	}
 
 	public void OnAccelerate(InputAction.CallbackContext context)
@@ -193,7 +196,7 @@ public class CameraController : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, _moveTarget, Time.deltaTime * InternalMoveSpeed);
 
 		//Move the _actualCamera's local position based on the new zoom factor
-		_actualCamera.transform.localPosition = Vector3.Lerp(_actualCamera.transform.localPosition, _cameraPositionTarget, Time.deltaTime * _internalZoomSpeed);
+		//_actualCamera.transform.localPosition = Vector3.Lerp(_actualCamera.transform.localPosition, _cameraPositionTarget, Time.deltaTime * _internalZoomSpeed);
 
 		//Set the target rotation based on the mouse delta position and our rotation speed
 		//Pitch
@@ -279,9 +282,30 @@ public class CameraController : MonoBehaviour
 			}
 			else
 			{
+				hitInfo.collider.gameObject.GetComponent<Target>().DefaultColor();
 			}
 		}
 		*/
+		CustomCursorInteraction();
 	}
-	
+
+	public void CustomCursorInteraction()
+	{
+		if (_interactable != null)
+		{
+			_interactable.GetComponent<Target>().DefaultColor();
+		}
+
+		//Vector2 customCursorScreenPos = new Vector2(virtualCursor.transform.position.x, virtualCursor.transform.position.y);
+		Ray ray = _actualCamera.ScreenPointToRay(_mousePos);
+		if (Physics.Raycast(ray, out RaycastHit hitInfo))
+		{
+			if (hitInfo.collider.gameObject.GetComponent<Target>() != null)
+			{
+				hitInfo.collider.gameObject.GetComponent<Target>().HighlightColor();
+				_interactable = hitInfo.collider.gameObject.transform;
+			}
+		}
+	}
+
 }
