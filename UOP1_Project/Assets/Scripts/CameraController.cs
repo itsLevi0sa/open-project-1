@@ -12,14 +12,13 @@ public class CameraController : MonoBehaviour
 	[Tooltip("The angle that we want the camera to be at.")]
 	public float CameraAngle;
 	[Tooltip("The default amount the player is zoomed into the game world.")]
-	//public float DefaultZoom;
-	//[Tooltip("The most a player can zoom in to the game world.")]
-	//public float ZoomMax;
-	//[Tooltip("The furthest point a player can zoom back from the game world.")]
-	//public float ZoomMin;
-	//[Tooltip("How fast the camera rotates")]
+	public float DefaultZoom;
+	[Tooltip("The most a player can zoom in to the game world.")]
+	public float ZoomMax;
+	[Tooltip("The furthest point a player can zoom back from the game world.")]
+	public float ZoomMin;
+	[Tooltip("How fast the camera rotates")]
 	public float RotationSpeed;
-	private Transform _interactable;
 
 	//Cursor
 	public Texture2D _cursorPanTexture;
@@ -45,7 +44,6 @@ public class CameraController : MonoBehaviour
 	//Camera specific variables
 	private Camera _actualCamera;
 	private Vector3 _cameraPositionTarget;
-	public Transform cameraStartingPos;
 
 	//Zoom variables
 	private float _currentZoomAmount;
@@ -81,14 +79,14 @@ public class CameraController : MonoBehaviour
 		//SetCursorPos(xPos, yPos);//Call this when you want to set the mouse position
 		Cursor.lockState = CursorLockMode.Confined;
 		if (hideSystemCursor == true)
-        {
+		{
 			Cursor.visible = false;
 		}
-        else
-        {
+		else
+		{
 			Cursor.visible = true;
 		}
-		
+
 
 		Cursor.SetCursor(_cursorDefaultTexture, _hotSpot, _cursorMode);
 
@@ -99,8 +97,7 @@ public class CameraController : MonoBehaviour
 		_actualCamera.transform.rotation = Quaternion.AngleAxis(CameraAngle, Vector3.right);
 
 		//Set the position of the camera based on the look offset, angle and default zoom properties. This will make sure we're focusing on the right focal point.
-		//CurrentZoom = DefaultZoom;
-		_moveTarget = cameraStartingPos.transform.position;
+		CurrentZoom = DefaultZoom;
 		_actualCamera.transform.position = _cameraPositionTarget;
 
 		//Set the initial rotation value
@@ -119,13 +116,13 @@ public class CameraController : MonoBehaviour
 	}
 
 	/// Calculates a new position based on various properties
-	
+
 	private void UpdateCameraTarget()
 	{
 		//_cameraPositionTarget = (Vector3.up * LookOffset) + (Quaternion.AngleAxis(CameraAngle, Vector3.right) * Vector3.back) * _currentZoomAmount;
 		//_cameraPositionTarget = _actualCamera.transform.rotation * Vector3.back * _currentZoomAmount;
 	}
-	
+
 
 	/// Sets whether the player has the right mouse button down
 	public void OnRotateToggle(InputAction.CallbackContext context)
@@ -168,7 +165,7 @@ public class CameraController : MonoBehaviour
 		}
 
 		// Adjust the current zoom value based on the direction of the scroll - this is clamped to our zoom min/max. 
-		//CurrentZoom = Mathf.Clamp(_currentZoomAmount - context.ReadValue<Vector2>().y, ZoomMax, ZoomMin);
+		CurrentZoom = Mathf.Clamp(_currentZoomAmount - context.ReadValue<Vector2>().y, ZoomMax, ZoomMin);
 	}
 
 	public void OnAccelerate(InputAction.CallbackContext context)
@@ -186,7 +183,7 @@ public class CameraController : MonoBehaviour
 
 	private void Update()
 	{
-		
+
 
 	}
 	private void LateUpdate()
@@ -196,13 +193,13 @@ public class CameraController : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, _moveTarget, Time.deltaTime * InternalMoveSpeed);
 
 		//Move the _actualCamera's local position based on the new zoom factor
-		//_actualCamera.transform.localPosition = Vector3.Lerp(_actualCamera.transform.localPosition, _cameraPositionTarget, Time.deltaTime * _internalZoomSpeed);
+		_actualCamera.transform.localPosition = Vector3.Lerp(_actualCamera.transform.localPosition, _cameraPositionTarget, Time.deltaTime * _internalZoomSpeed);
 
 		//Set the target rotation based on the mouse delta position and our rotation speed
 		//Pitch
 		transform.rotation *= Quaternion.AngleAxis(_mouseDelta.y * Time.deltaTime * RotationSpeed, Vector3.left);
 		//gizmoCam.transform.rotation *= Quaternion.AngleAxis(_mouseDelta.y * Time.deltaTime * RotationSpeed, Vector3.left);
-		
+
 		//Yaw
 		transform.rotation = Quaternion.Euler(
 			transform.eulerAngles.x,
@@ -245,11 +242,11 @@ public class CameraController : MonoBehaviour
 	{
 		_mousePos = context.ReadValue<Vector2>();
 		//Debug.Log("mousePos x: " + (int)_mousePos.x + " mousePos y: " + (int)_mousePos.y);
-		
+
 		if (_rightMouseDown)
 		{
 			if (buildForWebgl == false)
-            {
+			{
 				if ((int)_mousePos.x >= Screen.width - 2)
 				{
 					SetCursorPos(screenOffset_x, Screen.height + screenOffset_y - (int)_mousePos.y);
@@ -267,7 +264,7 @@ public class CameraController : MonoBehaviour
 					SetCursorPos((int)_mousePos.x + screenOffset_x, screenOffset_y + cursorSize);
 				}
 			}
-			
+
 		}
 
 		/*
@@ -282,30 +279,9 @@ public class CameraController : MonoBehaviour
 			}
 			else
 			{
-				hitInfo.collider.gameObject.GetComponent<Target>().DefaultColor();
 			}
 		}
 		*/
-		CustomCursorInteraction();
-	}
-
-	public void CustomCursorInteraction()
-	{
-		if (_interactable != null)
-		{
-			_interactable.GetComponent<Target>().DefaultColor();
-		}
-
-		//Vector2 customCursorScreenPos = new Vector2(virtualCursor.transform.position.x, virtualCursor.transform.position.y);
-		Ray ray = _actualCamera.ScreenPointToRay(_mousePos);
-		if (Physics.Raycast(ray, out RaycastHit hitInfo))
-		{
-			if (hitInfo.collider.gameObject.GetComponent<Target>() != null)
-			{
-				hitInfo.collider.gameObject.GetComponent<Target>().HighlightColor();
-				_interactable = hitInfo.collider.gameObject.transform;
-			}
-		}
 	}
 
 }
