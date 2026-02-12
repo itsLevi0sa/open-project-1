@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Asset-Tables-English
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Asset-Tables-English
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 83ed2cb58f2583e4f9d19bbef3ee22bb
+  m_SerializeEntries:
+  - m_GUID: 28b79018d4bee68439f47dd45c3103d8
+    m_Address: PhonemeSet_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4561f7c0128574dc58b83aca6aa228e8
+    m_Address: _en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: bffab80dc16c4464b92b2e97b6a1964c, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 98bd178d2969db04590023fe6f8a710a, type: 2}
+    - {fileID: 11400000, guid: df57672cce1eddf4fb3f21d22a53ada0, type: 2}
